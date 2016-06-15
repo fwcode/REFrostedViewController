@@ -173,6 +173,11 @@
 
 - (void)presentMenuViewControllerWithAnimatedApperance:(BOOL)animateApperance
 {
+    // hide keyboard
+    if ([self.view respondsToSelector:@selector(endEditing:)]) {
+        [self.view endEditing:YES];
+    }
+
     if ([self.delegate conformsToProtocol:@protocol(REFrostedViewControllerDelegate)] && [self.delegate respondsToSelector:@selector(frostedViewController:willShowMenuViewController:)]) {
         [self.delegate frostedViewController:self willShowMenuViewController:self.menuViewController];
     }
